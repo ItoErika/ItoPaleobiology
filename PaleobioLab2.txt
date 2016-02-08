@@ -1,0 +1,87 @@
+﻿Erika Ito
+Lab 2
+February 8th, 2016
+
+Part I Questions
+1. Your identifications (how many species do you recognize in the group, and which specimens belong to which species). Explain how and why you came to this conclusion.
+I recognized 3 species within the group. I did this by organizing the ammonites by their morphologic features. I also tried to use the data, specifically the umbilical width to diameter ratios, width to diameter ratios, and stratigraphic position to match the ammonites to appropriate species groups. After investigating the data and morphology I separating the ammonites into the species groups listed below: 
+> Species1<-Ammonites[c(1,11,8,20,21,6,18),]
+> Species2<-Ammonites[c(12,7,13,15,10,25,22,3,9,4,17,24,2),]
+> Species3<-Ammonites[c(19,14,5,23,16),]
+I Identified species 1 by choosing the ammonites with well defined ribs running across the whorls. These specimens also were fairly similar in terms of their UW and WD ratios, as well as in their stratigraphic positions, with nearly all of them having a value of about 8 for the strat position.
+I identified species 2 by choosing ammonites which were not involute, and did not have well-defined ribs, and instead had relatively smooth textures. The UW and WD ratios were fairly similar for all of the members I chose to put in this species. However, the stratigraphic position had a fairly wide range from 3.4 to 9.1.
+I identified species 3 by choosing the ammonites which are involute, or Anahoplites,, meaning the outer whorl of the shell largely covers the smaller, inner whorl, creating a spiral staircase-like appearance. All of the members of species 3 that I chose also had relatively low values in terms of their stratigraphic positions (ranging from 1.3-4.7), and had similar UW and WD ratios. 
+2. The morphological features you used to distinguish each species, including whatever combination of qualitative or quantitative traits you think are important.
+The major morphological features I used to distinguish each species was the preservation of well-defined ribs, and whether or not the species were involute. These chose these because they are the most physically distinguishing and obvious features of the specimens. I also took into account data regarding the umbilical width to diameter ratios, width to diameter ratios, and stratigraphic position of the specimens. I used the ratios because I thought it would help lessen the issue of size difference due to sexual dimorphism, or differences in maturity in terms of specimen age and development when the were preserved. I felt it was important to look at the stratigraphic position because I would expect that each individual would be preserved at similar points in geologic time, or that they may be index fossils. 
+3. The nature of ontogenetic change, if any, in the species. Explain your reasoning.
+        It appears in all three species that there is an increase in size as the ammonites reach maturity. I argue this is the case because there seem to be three distinct size ranges in each species. I believe it is likely that two of the size ranges represent females (largest) and males males (intermediate), and the last size range represents a more juvenile stage (smallest). It also seems in species 1 that as the ammonites mature they develop more closely spaced ribs. The smallest specimens, which are likely juveniles, in species 1 have ribs that have a more dull and widely spaced appearance. This is especially evident when comparing ammonite specimens 18 and 11. 
+
+4. The possibility of sexual dimorphism as a cause of morphological differences and how you evaluated that possibility.
+        I believe sexual dimorphism is a cause of morphological differences. As said in the previous question, there seems to be three distinct size ranges for each species group. This led me to believe that each size range is representative of males, females, and juveniles respectively. Although one might argue that the intermediate size are simply specimens between the stages of juvenile and maturity, I do not think this is the case. As said before, for species 1 seems to show more closely spaced ribs for more mature specimens. The two larger size ranges in this species group seem to have closely spaced ribs. The smallest size range does not. This suggests that the size discrepancy between the mature specimens in species 1 reflects a possibility of sexual dimorphism as a cause of morphological differences.
+Part II Questions - Subsection 1
+   1. Each element of the plethodon list has a name. What are they?
+> names(plethodon)
+[1] "land"    "links"   "species" "site"    "outline"
+   2. What class is each object?
+All 5 objects are lists:
+> class(plethodon["land"])
+[1] "list"
+> class(plethodon["links])
+[1] "list"
+> class(plethodon["species"])
+[1] "list"
+> class(plethodon["site"])
+[1] "list"
+class(plethodon["outline"])
+[1] "list"
+   3. What are are the dimensions of the first object in the plethodon list?
+dim(plethodon[“land”])
+[1] NULL
+one?
+
+I also changed “land” to an array (MyLandArray) and got the answer “one” when I typed in >dim(MyLandArray)
+
+Part II Questions - Subsection 2
+      1. Use the hummingbird dataset. Which object in the list records the landmark data?
+“land”
+      2. Perform a procrustes on the landmark data.
+Procrusteshummingbirds<-gpagen(hummingbirds[["land"]])
+      3. Perform a PCA on the hummingbird data.
+>plotTangentSpace(Procrusteshummingbirds[["coords"]],warpgrids=FALSE,verbose=FALSE)
+      4. How many "species" of hummingbird are there?
+One!
+  
+Part III Questions
+         1. What is the synapomorphy of the clade containing species D and E?
+Fangs longer than 6 inches
+         2. What is a plesiomorphic character of that clade?
+Sulfurous odor
+         3. What is the synapomorphy of the clade containing species A and B?
+Adorable eyelashes
+         4. Which taxa have a sulfurous odor?
+C, D, and E
+         5. What character distinguishes species D from species E?
+Laser death ray
+         6. Are adorable eyelashes a synapomorphy or an autapomorphy?
+Synapomorphy
+         7. Traditionally, the five taxa are grouped into three families. Determine if each family is monophyletic, paraphyletic, or polyphyletic.
+Family 1: Monophyletic
+Family 2: Polyphyletic
+Family 3: Monophyletic
+         8. More recently, species A has been grouped in a family with species D and E. Is this advisable? Why or why not?
+No, because A is separated from D and E by more than one common ancestor. This would be a false clade, you would have to include B and C to have a true clade, which would be monophyletic. 
+         9. Determine if the following groups are monophyletic, paraphyletic, or polyphyletic.
+Group 1: Polyphyletic
+Group 2: Monophyletic
+Group 3: Paraphyletic
+Group 4: Monophyletic
+Group 5: Polyphyletic
+Part IV Questions
+            1. Assuming that Gryphaea arcuata represents the ancestor, what type of heterochrony is most likely responsible for evolution of these two species?
+For the Gryphaea mccullochi (D) it is most likely peramorphosis, and for Gryphaea gigantea (E) it is most likely paedomorphosis.
+
+            2. Which species of Gryphaea has undergone a greater degree of heterochrony?
+Gryphaea gigantea (E)
+
+            3. What type of heterochrony is represented in the Ollenus example?
+Paedomorphosis
