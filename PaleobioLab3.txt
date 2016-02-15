@@ -1,0 +1,153 @@
+Lab 3
+
+Erika Ito
+2/15/16
+
+Exercise Questions 1
+1. How many collections are associated with this references?
+704
+
+2. What is the reference id number for the article?
+24429
+
+3. The first taxon in the taxonomic list is Rafinesquina alternata. Next to the taxonomic name is the citation (Conrad 1830), what is the significance of this citation?
+It means Conrad named the species in 1830.
+
+4. What is the class, order, family, genus, and species name of the second taxon in the taxonomic list?
+Class: Strophomenata
+Order: Strophomenida
+Family: Strophomenidae
+Genus: Strophomena
+Species: planumbona
+
+5. In what County was the data collected?
+Union
+
+6. What age (Period) is the data from?
+Ordovician
+
+7. What is the geologic formation where the data was found?
+Liberty
+Exercise Questions 2
+   1. Zoom in so that you can see from Texas to Florida and from Florida to New York. You can zoom using the mouse wheel, by double-clicking, or clicking the + and - signs. Some of the occurrences are orange and others are yellow, what is the significance of the different colors?
+The orange colors show fossil findings of the genus Abra that date back to the Paleogene. Yellow colors show fossil findings of the genus Abra that date back to the Neogene or Quaternary.
+
+   2. Zoom back out. Add an additional filter into the search bar, the Ypresian stage. The Ypresian is a time interval ranging from 47.8â€“56.0 million years ago. In what countries are there Ypresian occurrences of Abra?
+The United States, the United Kingdom, and Belgium. 
+
+   3. Clear the Abra and Ypresian filters from the search. Look for the genus Ambonychia. Within the United States find the city with the most occurrences of Ambonychia. What is the name of this city?
+Cincinnati
+
+   4. What age (Period) are most Ambonychia occurrences?
+Ordovician
+
+   5. During this time-period, were most occurrences of Ambonychia arrayed parallel or perpendicular to the equator?
+Parallel to the equator
+
+   6. Click on the little insect icon on the left side of the screen. This brings up taxonomic information on the target taxon. What order does Ambonychia belong to?
+Myalinida
+Exercise Questions 3 
+For the following questions generate the appropriate URL for the following data queries.
+      1. What is the appropriate URL for downloading all occurrences of Ambonychia in the Lexington Limestone as a JSON?
+https://training.paleobiodb.org/data1.2/occs/list.json?datainfo&rowcount&base_name=Abra, Ambonychia&strat=Lexington Limestone
+
+      2. What is the appropriate URL for downloading all occurrences of mammals present in the Paleocene through Oligocene epochs as a csv?
+https://training.paleobiodb.org/data1.2/occs/list.csv?datainfo&rowcount&base_name=mammalia&interval=Paleocene,Oligocene
+
+      3. What is the appropriate URL for downloading all opinions on the order Testudines in the Mesozoic?
+https://training.paleobiodb.org/data1.2/opinions/list.csv?datainfo&rowcount&interval=Mesozoic&op_type=all
+
+      4. What is the appropriate URL for downloading all collections of Aves, Marsupialia, and Sirenia in the United States as a csv?
+https://training.paleobiodb.org/data1.2/colls/list.csv?datainfo&rowcount&base_name=Aves, Marsupialia, Sirenia&cc=US
+
+      5. What is the appropriate URL for downloading all occurrences of the gastropod genus Ficus as a csv?
+https://training.paleobiodb.org/data1.2/occs/list.csv?datainfo&rowcount&base_name=Gastropoda:Ficus&taxon_reso=genus&show=acconly
+Exercise Questions 4
+The next set of questions is free form, in that you can find the answer to the following questions using any of the PBDB tools discussed so far.
+         1. What family does the genus Gastrocopta belong to?
+Gastrocoptidae
+
+         2. There is only one occurrence of Isoetes in Portugal. What age is it?
+It dates back to the Aptian during the Cretaceous. 
+
+         3. What is the age of the oldest occurrence of Gastrocopta?
+The oldest occurrence dates back to the Eocene.
+
+         4. There is only one occurrence of Tiktaalik in the Paleobiology Database? Was that occurrence located in the tropics or the extratropics when it was alive?
+Tropics
+
+         5. There are two occurrences of Namacalathus in Sibera. What geologic formations are they found in?
+The Raiga Formation and the Kotodzha Formation
+Exercise Questions 5
+https://paleobiodb.org/data1.2/colls/list.csv?base_name=Mammut&interval=Pliocene
+
+            1. In Lab Exercise 2 you downloaded a csv file of ammonite sizes from a github URL directly into R. What code would you use to download the above PBDB data directly into R?
+>URL<-"https://paleobiodb.org/data1.2/colls/list.csv?base_name=Mammut&interval=Pliocene"
+> Mammut<-read.csv(URL,row.names=1)
+> Mammut
+
+
+               1. Download the above data into R. What are its dimensions?
+39x12
+> dim(Mammut)
+[1] 39 12
+               2. Did the above call use the occurrences, collections, references, opinions, or specimens route?
+collections
+               3. What genus is being called for? What is its colloquial name? What age did I limit the data query too?
+Mammut, Mastodon, Pliocene
+               4. Look through the service documentation for the appropriate route (based on your answer to Question 2). Find out how to extend the age search to range from the Miocene Epoch through to the Pleistocene Epoch. Give the new data query URL.
+https://paleobiodb.org/data1.2/colls/list.csv?datainfo&rowcount&base_name=Mammut&interval=Miocene,Pleistocene
+               5. I want the data query to show me the paleocoordinates (i.e., paleolatitude and paleolongitude) of each data point. Give the updated data query URL.
+https://paleobiodb.org/data1.2/colls/list.csv?datainfo&rowcount&base_name=Mammut&interval=Miocene,Pleistocene&show=paleoloc
+Question 6
+                  1. Write an R function that will take a taxonomic name (as a character string) and an interval (as a character string) as its argument, and will download all fossil occurrences into R. See above.
+
+downloadPBDB <- function(taxon, interval){"http:///paleobiodb.org/data1.2/occs/list.csv?datainfo&rowcount&base_name=”abra, taxon, "&interval=", interval, sep=""}
+
+Some species have morphologic data attached to them in the Paleobiology Database. Let's consider the following three species of Ammonite: Glyptophiceras sinuatum, Xenoceltites variocostatus, and Submeekoceras mushbachanum.
+Each of these species have morphologic data (e.g., shell width measurements) attached to them in the paleobiology database. You can search for this information by searching taxonomic names here.
+                     1. Each of the ammonite specimens in Part I of Lab 2 belongs to one of these three species. Based on 1) the morphologic information on these three species in the Paleobiology Database and 2) the morphologic information from Lab 2, can you tell which specimens belong to which species? Explain your reasoning.
+        I cannot tell with absolute certainty which specimens belong to which species, but I can use the information from the Paleobiology Database to make educated guesses about how to groups the specimens. I first got the average width and average diameter measurements for each species from the PBDB. I then divided the average width by the average diameter to get an average ratio between width and diameter for each species as shown below. I did this to try to account for the possibility of age and sexual dimorphism within the species, hoping that the ratio would help lessen the issue of difference in size due differences in specimen sex or maturity. I then loaded the ammonite specimen data from lab 2 into R. I first assigned species to the lab 2 specimens that matched both the average width and diameter measurements from the PBDB very closely. For example, specimen 4 has length and width values very close to the average values given for Glyptophiceras sinuatum on the PBDB. Similarly, specimen 23 closely matches both the average width and average diameter values for Xenoceltites variocostatus.  After I did this, I tried to group the rest of the specimens based on the average width to diameter ratio I calculated. Inconveniently, Xenoceltites variocostatus and Submeekoceras mushbachanum have nearly identical width to ratio values of nearly .26. Therefore,  I had to assign all remaining species with a width to ratio value near .26 based solely on their proximity to average width and diameter values for each species. There were some specimens that did not closely match both of the average diameter or width values of the species, and also did not have width to diameter ratios that resembled those that I calculated for each species. I gave my best guess for these species (marked with an X in the table I created below next to the species names) based on the closeness of only one of the parameters (width, diameter, or W/D) to the PDBD average values. It is very likely that these species assignments were incorrect. 
+        One issue with using this method and a probable source of error in grouping the specimens is it did not take account for morphological features such as whorl patterns or ribbing. The species I assigned to lab 2 specimens as shown below are therefore probably not all correct. 
+
+
+Glyptophiceras sinuatum: Average measurements (in mm): shell width 9.62, shell diameter 40.8
+*Average WD = 9.62/40.8 = .2358
+Xenoceltites variocostatus: Average measurements (in mm): shell width 6.12, shell diameter 23.5
+*Average WD = 6.12/23.5 = .26
+Submeekoceras mushbachanum: Average measurements (in mm): shell width 11.0, shell diameter 42.4
+*Average WD = 11.0/42.4 = .259
+
+Ammonite Data from Lab 2:
+Specimen       Width:          Diameter       WD       Species
+1)                    14.03            61.0             .23        Glyptophiceras sinuatum
+2)                     5.2               20.0              .26       Xenoceltites variocostatus
+3)                     8.05             35.0              .23       Glyptophiceras sinuatum
+4)                     9.085            39.5             .23        Glyptophiceras sinuatum
+5)                     8.12              28.0             .29       Xenoceltites variocostatus
+6)                      4.025            11.5             .35        Xenoceltites variocostatus X
+7)                     7.26              33.0             .22       Xenoceltites variocostatus
+8)                     15.07            68.5              .22       Glyptophiceras sinuatum
+9)                     12.88            56.0              .23       Glyptophiceras sinuatum
+10)                   11.5              50.0              .23       Submeekoceras mushbachanum
+11)                   19.11             73.5             .26       Xenoceltites variocostatus:
+12)                    6.061            20.9             .29        Xenoceltites variocostatus
+13)                    8.7               43.5             .20       Submeekoceras mushbachanum
+14)                    5.12             16.0             .32       Xenoceltites variocostatus X
+15)                    8.165            35.5            .23        Glyptophiceras sinuatum
+16)                    10.465          45.5            .23        Submeekoceras mushbachanum
+17)                    7.13              31.0            .23        Glyptophiceras sinuatum
+18)                    4.012            11.8            .34        Glyptophiceras sinuatum X
+19)                    14.605           63.5            .23       Glyptophiceras sinuatum
+20)                    10.235           44.5            .23       Submeekoceras mushbachanum  
+21)                     8.91              40.5            .22       Submeekoceras mushbachanum
+22)                    11.04             48.0            .22       Submeekoceras mushbachanum
+23)                    6.44              23.0             .28       Xenoceltites variocostatus
+24)                    5.6                20.0             .28       Xenoceltites variocostatus
+25)                   12.579            59.5             .21       Glyptophiceras sinuatum
+
+                        1. Look up Xenoceltites variocostatus in the Paleobiology Database. Find the first person (journal paper/reference) to name this species. (Hint: Both the first and second author's last names start with "B"). What is the name of the article?
+Smithian (Early Triassic) ammonoid faunas from northwestern Guangxi (South China): taxonomy and biochronology
+
+                        2. Do a google scholar search for this article. Open it and scroll down to the "Plates" subsection. You should see various pictures of different ammonites towards the very end of the article. Find the pictures of Xenoceltites variocostatus. Based on the features in these pictures, can you identify which specimens in Part I of Lab 2 belong to this species?
+In the images of Xenoceltites variocostatus, I see fairly well defined ribs in all of the specimens. Therefore, from this visual information alone, I would group specimens 1, 2, 6, 11, 8, 18, 20, 21, 6, and 18 into this the Xenoceltites variocostatus.
