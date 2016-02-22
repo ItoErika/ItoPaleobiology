@@ -32,7 +32,7 @@ Exercise Questions 2
    1. Zoom in so that you can see from Texas to Florida and from Florida to New York. You can zoom using the mouse wheel, by double-clicking, or clicking the + and - signs. Some of the occurrences are orange and others are yellow, what is the significance of the different colors?
 The orange colors show fossil findings of the genus Abra that date back to the Paleogene. Yellow colors show fossil findings of the genus Abra that date back to the Neogene or Quaternary.
 
-   2. Zoom back out. Add an additional filter into the search bar, the Ypresian stage. The Ypresian is a time interval ranging from 47.8–56.0 million years ago. In what countries are there Ypresian occurrences of Abra?
+   2. Zoom back out. Add an additional filter into the search bar, the Ypresian stage. The Ypresian is a time interval ranging from 47.8â€“56.0 million years ago. In what countries are there Ypresian occurrences of Abra?
 The United States, the United Kingdom, and Belgium. 
 
    3. Clear the Abra and Ypresian filters from the search. Look for the genus Ambonychia. Within the United States find the city with the most occurrences of Ambonychia. What is the name of this city?
@@ -102,7 +102,11 @@ https://paleobiodb.org/data1.2/colls/list.csv?datainfo&rowcount&base_name=Mammut
 Question 6
                   1. Write an R function that will take a taxonomic name (as a character string) and an interval (as a character string) as its argument, and will download all fossil occurrences into R. See above.
 
-downloadPBDB <- function(taxon, interval){"http:///paleobiodb.org/data1.2/occs/list.csv?datainfo&rowcount&base_name=�abra, taxon, "&interval=", interval, sep=""}
+downloadPBDB <- function(taxon, interval){URL<-paste("http:///paleobiodb.org/data1.2/occs/list.csv?base_name=",
+taxon,"&interval=",interval,sep="")
+ShowData<-read.csv(URL)
+print(ShowData)}
+downloadPBDB("Abra","Cenozoic")
 
 Some species have morphologic data attached to them in the Paleobiology Database. Let's consider the following three species of Ammonite: Glyptophiceras sinuatum, Xenoceltites variocostatus, and Submeekoceras mushbachanum.
 Each of these species have morphologic data (e.g., shell width measurements) attached to them in the paleobiology database. You can search for this information by searching taxonomic names here.
