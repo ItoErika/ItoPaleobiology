@@ -1,18 +1,22 @@
-﻿Erika Ito
+Erika Ito
+2/22/16
 Paleobiology Lab Exercise 4
 Problem Set I
-1. How         many unique genera are in the Miocene,Early Jurasic, Late         Cretaceous, and Pennsylvanian epochs (not total, each)? What code         did you use to find out?
-602,         169, 375, 133
+1. How many unique genera are in the Miocene,Early Jurasic, LateCretaceous, and Pennsylvanian epochs (not total, each)? What code         did you use to find out?
+602, 169, 375, 133
 code:
-> apply(PresencePBDB,1,sum)        
-2.  How many geologic epochs in general are in this dataset? What code did         you use to find out?
+> apply(PresencePBDB,1,sum) 
+
+2.  How many geologic epochs in general are in this dataset? What code did you use to find out?
 29
 code:
 > length(PresencePBDB[,1])
-29        
+29 
+
 3. Which epochs contain specimens of the genus Mytilus? What code did you find out.
 Pridoli, Early Devonian, Cisuralian, Late Jurassic, Eocene, Late Cretaceous, Early Cretaceous, Middle Jurassic, Paleocene, Oligocene, Miocene, Early Jurassic, Pleistocene, Middle Triassic, Late Triassic, Pliocene, Early Triassic
 > which(PresencePBDB[,"Mytilus"]==1)
+
 4. Look at the epochs in the geologic timescale. Using your answer to question 3, in which epochs can we infer that Mytilus was present, even though we have no record of them in the Paleobiology Database? How did you deduce this?
 Mytilus must have at least been present from the earliest epoch from above (Pridoli) to the latest (Pleistocene). Even if we do not have record of them existing at the time intervals in between, we know Mytilus was present because or else it would not have shown up at the latest epoch (Pleistocene)
         
@@ -24,7 +28,7 @@ The Jaccard index is the simplest Similarity index. It is the intersection of tw
 >Vector2<-PresencePBDB["Pleistocene",]
 >ResultantVector<-Vector1+Vector2
 >length(ResultantVector[which(ResultantVector==2)])
-[1]         509
+[1] 509
 > table(ResultantVector)
 >ResultantVector
 0       1     2         
@@ -43,7 +47,7 @@ Again, calculate the jaccard distance of the "Miocene" and "Pleistocene" samples
 >vegdist(PresencePBDB,method=”jaccard”,binary=FALSE,diag=FALSE,upper=FALSE,na.rm=FALSE)
 
 Data for Pleistocene row and Miocene column
-Jaccard distance for Miocene and Pleistocene samples is 0.17207792
+Jaccard distance for Miocene and Pleistocene samples is 0.17207792 (same as answer for number 2).
 
 
 4) Using the vegdist( ) function. Calculate the Jaccard distances of all the following epochs in PresencePBDB - the "Pleistocene", "Pliocene", "Miocene", "Oligocene", "Eocene", "Paleocene". What code did you use? Which two epochs are the most dissimilar?
@@ -57,7 +61,7 @@ Jaccard distance for Miocene and Pleistocene samples is 0.17207792
 > PaleoceneVector<-PresencePBDB["Paleocene",]
 >PBDBMatrix<-rbind(PleistoceneVector,PlioceneVector,MioceneVector,OligoceneVector,EoceneVector,PaleoceneVector)
 >vegdist(PBDBMatrix,method="jaccard",binary=FALSE,diag=FALSE,upper=FALSE,na.rm=FALSE)
-                           PleistoceneVector PlioceneVector MioceneVector OligoceneVector
+                   PleistoceneVector PlioceneVector MioceneVector OligoceneVector
 PlioceneVector         0.12692967                                             
 MioceneVector          0.17207792     0.08496732                              
 OligoceneVector        0.26910299     0.18968386    0.16065574                
@@ -77,13 +81,9 @@ Problem Set III
 1) Create a subset of the PresencePBDB matrix which contains just the following rows - "Pliocene", "Oligocene", "Paleocene", "Early Cretaceous", "Late Jurassic", and "Middle Jurassic". Name this subset RandomEpochs. Show your code.
 >RandomEpochs<-rbind(PresencePBDB["Pliocene,"],PresencePBDB["Oligocene",],PresencePBDB["Paleocene",],PresencePBDB["Early Cretaceous",],PresencePBDB["Late Jurassic",],PresencePBDB["Middle Jurassic",])
 
-
-
-
-
 2) Using vegdist( ) find the dissimilarities of all the epochs in Random Epochs. Show your code.
 >vegdist(RandomEpochs,method="jaccard",binary=FALSE,diag=FALSE,upper=FALSE,na.rm=FALSE)
-          1                 2              3                4                 5
+     1          2        3         4        5
 2 0.1896839                                        
 3 0.3791469 0.4104235                              
 4 0.7462908 0.7480315 0.6400742                    
@@ -102,10 +102,10 @@ Ordination:
 1, 2, 3, 4, 5, 6 based on R table above (Pliocene, Oligocene, Paleocene, Early Cretaceous, Late Jurassic, and Middle Jurassic). We can tell this because the higher the Jaccard number, the more dissimilar, the lower the Jaccard number, the more similar. 
 
 4) Can you deduce what "variable" is controlling this gradient (e.g., temperature, water depth, geographic distance)? [Hint: Check the geologic timescale]. State your reasoning.
-        It seems that all of these variables could have come into play, during the time interval between the Middle Jurassic and the Pliocene, the Earth experienced a number of changes. These changes included climate change (transition into Icehouse Earth during the Miocene for example). Fluctuations in climate cause expansions or contractions of ice sheets in the poles. Therefore, the time interval captured in the inferred gradient experienced a number of transgressions and regressions. This time interval captures the Zuni sequence which began in the Jurassic and peaked in the Cretaceous, when epicontinental seaways covered much of the United States (Western Interior Seaway). This transgression was caused by the hothouse Cretaceous climate that developed as a result of a superplume event. The Zuni sequence ended by the Paleocene, when sea level regressed again. This information implies that these variables mentioned above actually go hand in hand. The temperature/climate changes would have caused sea level fluctuations. The rise and subsequent drop in sea level could have consequently separated species, creating geographic distance, controlling the gradient as well. I would therefore postulate that all of the variables listed controlled the gradient. 
+        It seems that all of these variables could have come into play, during the time interval between the Middle Jurassic and the Pliocene, the Earth experienced a number of changes. These changes included climate change (transition into Icehouse Earth during the Miocene for example). Fluctuations in climate cause expansions or contractions of ice sheets in the poles. Therefore, the time interval captured in the inferred gradient experienced a number of transgressions and regressions. This time interval captures the Zuni sequence which began in the Jurassic and peaked in the Cretaceous, when epicontinental seaways covered much of the United States (Western Interior Seaway). This transgression was caused by the hothouse Cretaceous climate that developed as a result of a superplume event. The Zuni sequence ended by the Paleocene, when sea level regressed again. This information implies that these variables mentioned above actually go hand in hand. The temperature/climate changes would have caused sea level fluctuations. The rise and subsequent drop in sea level could have consequently separated species, creating geographic distance, controlling the gradient as well. I would therefore postulate that all of the variables listed controlled the gradient, but perhaps climate would be the main driving force, having a cascading impact on other variables. The water depth changes most likely have the greatest impact on the gradient we see though, since we are looking at marine organisms, which most often have preferential depths at which they can thrive. 
 
 5). There is a relatively high dissimilarity between the Early Cretaceous and Paleocene epochs. Can you hypothesize why this is? Google these epochs if you need to.
-There was a mass extinction event at the boundary between the Cretaceous and the Paleocene (K-Pg boundary) caused by an asteroid impact ~65 Ma ago. It is therefore unsurprising that the Early Cretaceous and the Paleocene epochs show higher dissimilarity, because the extinction event likely drove evolutionary/taxonomic turnover. 
+There was a mass extinction event at the boundary between the Cretaceous and the Paleocene (K-Pg boundary) caused by an asteroid impact ~65 Ma ago. It is therefore unsurprising that the Early Cretaceous and the Paleocene epochs show higher dissimilarity, because the extinction event likely drove evolutionary/taxonomic turnover. As stated before, the early Paleocene also marks the end of the Zuni sequence, such drastic sea level changes may also be at play in sparking taxonomic turnover. 
 
 
 Problem Set IV
@@ -124,7 +124,7 @@ Problem Set IV
 
         It appears that the orientation of the samples along axis 1 (horizontal axis) is related to the average latitude for each plate. The plates that are in close horizontal proximity on the DCA plot have average paleolatitudinal values that are fairly similar (most within 10-20 degrees latitude). Geoplates 801, 402, and 401 are a good example of this. They are all relatively close in horizontal proximity on the plot, and are all within about 20 degrees paleolatitude from one another. There may be a weaker relationship between paleolongitude and the orientation on axis 2 (vertical axis), but it is less consistent with the data. Some geoplates in close proximity along the orientation of axis 2 (vertical) have similar longitudinal values and others have dramatically different values, so the relationship here is unclear. 
 
-
+codes:
 >OrdovicianDCA<-decorana(OrdoMatrix)
 > plot(OrdovicianDCA,display="sites")
 > tapply(Ordovician[,"paleolat"],Ordovician[,"geoplate"],mean)
