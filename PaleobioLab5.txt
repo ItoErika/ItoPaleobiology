@@ -182,20 +182,23 @@ check:
 3) Looking just at changes in brachiopod richness through time, when did the greatest drop in brachiopod richness occur (i.e., between what two consecutive epochs)?
 > BrachRichness
    Mississippian     Pennsylvanian  Early Ordovician Middle Ordovician   Late Ordovician        
-           314                   284                       141                      282                         331 
+  314                   284                  141            282                331 
 Llandovery    Wenlock    Ludlow    Pridoli     Early Devonian     Middle Devonian     Late Devonian
-            271         257           234       138                497                      353                         274
+   271         257           234       138        497                353              274
 Cisuralian             Late Jurassic    Eocene           Late Cretaceous    Early Cretaceous
-        564                  111                    57                             96                          125 
+ 564                     111              57                 96                    125 
 Middle Jurassic    Paleocene         Lopingian              Early Jurassic       Guadalupian
-     175                      29                   406                           130                          549
+   175                 29              406                   130                      549
 Middle Triassic     Late Triassic     Miocene                 Early Triassic        Pliocene
-      111                      193                  45                             63                          23
+111                      193            45                         63                 23
 Pleistocene          Oligocene
-      19                        30
+ 19                    30
 
 In order of geologic time (oldest->youngest): early ordo, mid ordo, late ordo, landdovery, wenlock, ludlow, pridoli, early dev, mid dev, late dev, miss, penn, cisuralian, guadalupian, lopingian, early tri, mid tri, late tri, early jur, late mid jur, late jur, early cret., late cret., paleocene,eocene,oligocene,miocene,pliocene,pleistocene
 
+Vector in order
+> BrachRichnessVector
+ [1] 141 282 331 271 257 234 138 497 353 274 314 284 564 549 406  63 111 193 130 175 111 125  96  29  57  30  45  23  19
 
 The largest drop in richness occurs between the Lopingian and the Early Triassic.
 A drop from a brachiopod richness of 406 to a brachiopod richness of 63 (343 drop) occurred at this boundary.
@@ -264,33 +267,6 @@ check:
 StandardizedBivRichVector = bivalve richness = x-axis
 StandardizedBrachRichVector = brachiopod richness = y-axis
 > plot(x=StandardizedBivRichVector,y=StandardizedBrachRichVector)
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 From Problem Set 3, plot:
 > plot(x=BivRichnessVector,y=BrachRichnessVector)
