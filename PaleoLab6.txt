@@ -1,8 +1,9 @@
-﻿Lab Exercise 6
+Lab Exercise 6
 
 
 Problem Set 1
 1) As part of our matching procedure between the Macrostrat database and the Paleobiology database, we lost some data - i.e., there was some Paleobiology Database occurrences that could not be matched to the Macrostrat database. How many occurrences were lost? Show your code.
+25153
 > dim(DataPBDB)
 [1] 34166    26
 > dim(MacroPBDB)
@@ -15,7 +16,7 @@ Not all of the occurrences in the DataPBDB dataframe are matched to stratigraphi
 
 
 Problem Set 2
-1) A good candidate for classification as a lagerstätten should have high diversity of different taxnomic orders. Calculate the order-level richness of each stratigraphic formation. Find the top 10 candidate units by this criteria. State them and give the code you used. Also, create a character vector( ) listing the names of these stratigraphic units. Name this vectorCandidateUnits.
+1) A good candidate for classification as a lagerstätten should have high diversity of different taxnomic orders. Calculate the order-level richness of each stratigraphic formation. Find the top 10 candidate units by this criteria. State them and give the code you used. Also, create a character vector( ) listing the names of these stratigraphic units. Name this vector CandidateUnits.
 Hints
 1. Remember how to calculate the richness of a sample, and apply this to each sample of the OrderMatrix.
 2. If you do not remember how to calculate richness, consult the previous lab.
@@ -51,14 +52,17 @@ We will now take the list of rare genera you just made, RareGenera and see what 
 1) Subset GenusMatrix so that it only shows the 10 stratigraphic units we determined were potential candidates. Show your code and name your new matrix, CandidateMatrix.
 Load in the following code that I wrote for you. It will find the percentage of genera in each sample (stratigraphic unit) that occur in our vector of RareGenera.
 > CandidateMatrix<-subset(GenusMatrix[CandidateUnits,])
-
-2) Based on the output of PercentShared and your answer to Problem Set 2 - Question 1 - i.e., the ranking of candidate units based on the number of orders represented, which four units do you think are most likely to qualify as Lagerstätten? Explain your reasoning.
-Marjum Limestone, Forteau Fm, Chancellor, and Weymouth Fm
-
 > percentRare<-function(CandidateUnit,RareGenera) {CandidateUnit<-CandidateUnit[CandidateUnit>0] PercentIn<-length(which(names(CandidateUnit) %in% names(RareGenera)))
 TotalGenera<-length(CandidateUnit) 
 PercentShared<-PercentIn/TotalGenera
 return(PercentShared)}
+
+2) Based on the output of PercentShared and your answer to Problem Set 2 - Question 1 - i.e., the ranking of candidate units based on the number of orders represented, which four units do you think are most likely to qualify as Lagerstätten? Explain your reasoning.
+The Marjum Limestone, Forteau Fm, Chancellor, and Weymouth Fm are most likely to qualify as Lagerstätten. This is reasonable because as shown in the codes below, these four units contain the highest number of rare genera. These four units also all appear in the top ten in terms of order-level richness which is also an indicator of Lagerstätten. Therefore, these are the units which most like fit the criteria to qualify as Lagerstätten. 
+
+top 10 from Problem Set 2 Question 1:
+Forteau Fm, Parker Slate, Snowy Range Fm, Weymouth Fm, Langston Fm, Wheeler Shale, Marjum Limestone, Stephen Fm, Kinzers Fm, Chancellor
+
 > PercentShared<-apply(CandidateMatrix,1,percentRare,RareGenera)
 > PercentShared
       Forteau Fm     Parker Slate   Snowy Range Fm      Weymouth Fm      Langston Fm    Wheeler Shale Marjum Limestone       Stephen Fm       Kinzers Fm 
