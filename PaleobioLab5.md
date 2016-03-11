@@ -1,17 +1,26 @@
-﻿Erika Ito
+Erika Ito
 Lab Exercise 5
-Problem Set 1
+
+> 18/20
+
+## Problem Set 1
 You may not use vegan( ) for this subsection.
+
 1) What is Bivalve generic richness in the Miocene? What code did you use to find
 out?
+
+````R
 > table(BivalveAbundance["Miocene",] )
 > sum(table(BivalveAbundance["Miocene",]))
 [1] 2273
 > 2273-1639
 [1] 634
+````
 
 2) What is the Berger-Parker Index of Brachiopods genera in the Pliocene? What code did you use to find out? [Hint: the function max( ) may help you).
 (abundance of most common species / totalabundance all species)
+
+````R
 > max(BrachiopodAbundance["Pliocene",])
 [1] 22
 > table(BrachiopodAbundance["Pliocene",])
@@ -24,8 +33,10 @@ OR
  [1] 99
 > 22/99
 [1] 0.2222222
+````
 
 3) What is the Gini-Simpson Index of Brachiopods during the Late Ordovician? What code did you use to find out?
+````R
 1-sum(n/N)^2 
 N=total number of species 
 n=abundance each species
@@ -37,12 +48,14 @@ n=abundance each species
 [1] 0.02154119
 > 1-0.02144119
 [1] 0.9785588
-
+````
 
 4) What is the Shannon's Entropy of Bivalves during the Late Cretaceous? What code did you use to find out?
 SUM(n/N)ln(n/N)
 N= sum total abundance all species
 n=abundance each species
+
+````R
 > N<-sum(BivalveAbundance["Late Cretaceous",])
 >N
 [1] 29684
@@ -53,66 +66,84 @@ n=abundance each species
 OR5>n<-BivalveAbundance[“Late Cretaceous”,BivalveAbundance[“Late Cretaceous”,]>0]
 > -sum((n/N)*log(n/N))
 [1] 5.086654
-
+````
 
 5) What is the Shannon's Entropy of Bivalves during the Paleocene? What code did you use to find out?
+````R
 > N<-sum(BivalveAbundance["Paleocene",])
 > N
 [1] 4238
 > n<-BivalveAbundance["Paleocene", BivalveAbundance["Paleocene",]>0]
 > -sum((n/N)*log(n/N))
 [1] 4.511875
+````
 
 6) What is the percent change in Shannon's Entropy between the Late Cretaceous and the Paleocene? Can you think of any major events that happened between the Late Cretaceous and Paleocene that might be relevant to biodiversity? [Hint: Use google if you don't know.] Is this reflected in this index?
+
+````R
 >(5.086654-4.511875)/5.086654
 [1] 0.1129975
 So it is an 11.3% change. 
 K/Pg boundary asteroid impact caused mass extinction. Yes, it is reflected in the large percent change.
+````
 
 7) What if you use the exp( ) function to exponentiate the Shannon's Entropies you calculated in questions 4,5, and 6 (i.e.,e^Shannon's Entropy)? What percent of diversity is gained/lost? Does this better reflect the change between the Late Cretaceous and Paleocene? Why or why not?
+
+````R
 > exp(4.511875)/exp(5.086654)
 [1] 0.5628292
+````
 56.3%  loss in diversity.
 
+> Nope! The Paleocene is 56.3% as diverse as the Late Cretaceous... so how much was LOST? -1 Points
 
-Problem Set 2
+## Problem Set 2
 Install (if you have not already) and load the vegan package into R. Read the help file for the diversity( ) function - ?diversity or help(diversity). You must have already loaded the vegan package in order for it to run.
 1) Use the specnumber( ) function (also from the vegan package) to find Bivalve richness in the Miocene. What code did you use to find out?
+
+````R
 634
 > specnumber(BivalveAbundance ["Miocene",])
 [1] 634
-
+````
 
 2) Use the diversity( ) function to find the Gini-Simpson Index of Brachiopods during the Late Ordovician? What code did you use to find out?
+
+````R
 0.9784588
 > diversity(BrachiopodAbundance, index="simpson", MARGIN=1, base=exp(1))["Late Ordovician"]
+````
 
 3) Use the diversity( ) function to find the Shannon's Entropy of Bivalves during the Late Cretaceous? What code did you use to find out?
+
+````R
 5.086654 
 > diversity(BivalveAbundance,index="shannon",MARGIN=1,base=exp(1))["Late Cretaceous"]
 Late Cretaceous 
        5.086654 
+````
 
 4) Use the diversity( ) function to find the Shannon's Entropy of Bivalves during the Paleocene? What code did you use to find out?
+
+````R
 4.511875 
 > diversity(BivalveAbundance,index="shannon",MARGIN=1,base=exp(1))["Paleocene"]
 Paleocene 
  4.511875 
+````
 
-
-Problem Set 3
+## Problem Set 3
 1) Is brachiopod richness positively, negatively, or un-correlated with bivalve richness? Show your code?
 negatively correlated
+
+````R
 > BivRichness<-specnumber(BivalveAbundance)
 > is(BivRichness,"vector")
 
-
 In order of geologic time (oldest->youngest): early ordo, mid ordo, late ordo, landdovery, wenlock, ludlow, pridoli, early dev, mid dev, late dev, miss, penn, cisuralian, guadalupian, lopingian, early tri, mid tri, late tri, early jur, late mid jur, late jur, early cret., late cret., paleocene,eocene,oligocene,miocene,pliocene,pleistocene
-
 
 To order in geologic time (oldest-> youngest)
 >BivRichnessVector<-c(42,48,87,56,66,81,51,111,88,70,99,104,160,191,156,151,101,242,217,202,270 ,393,574,305,512,355,634,534,498)
-
 
 make sure nothing was skipped:
 > sum(BivRichnessVector)
@@ -124,7 +155,6 @@ make sure nothing was skipped:
 > length(BrachRichness)
 [1] 29
 
-
 now for brachiopod richness
 > BrachRichness<-specnumber(BrachiopodAbundance)
 > BrachRichness
@@ -132,19 +162,20 @@ To order in geologic time (oldest -> youngest)
 > BrachRichnessVector<-c(141,282,331,271,257,234,138,497,353,274,314,284,564,549,406,63,
 111,193,130,175,111,125,96,29,57,30,45,23,19)
 
-
 check:
 >sum(BrachRichness)
 [1] 6102
 > sum(BrachRichnessVector)
 [1] 6102
 
-
 > cor(BrachRichnessVector,BivRichnessVector)
 [1] -0.5702269
+````
 
 2) Is brachiopod biodiversity positively, negatively, or un-correlated with bivalve biodiversity when using the Gini-Simpson index? Show your code?
 negatively correlated
+
+````R
 > BrachDiv<-diversity(BrachiopodAbundance,index="simpson",MARGIN=1,base=exp(1))
 > BrachDiv
 
@@ -177,10 +208,12 @@ check:
 
 > cor(BivDivVector,BrachDivVector)
 [1] -0.2355646
-
+````
 
 3) Looking just at changes in brachiopod richness through time, when did the greatest drop in brachiopod richness occur (i.e., between what two consecutive epochs)?
-> BrachRichness
+
+````R
+>BrachRichness
    Mississippian     Pennsylvanian  Early Ordovician Middle Ordovician   Late Ordovician        
   314                   284                  141            282                331 
 Llandovery    Wenlock    Ludlow    Pridoli     Early Devonian     Middle Devonian     Late Devonian
@@ -202,10 +235,10 @@ Vector in order
 
 The largest drop in richness occurs between the Lopingian and the Early Triassic.
 A drop from a brachiopod richness of 406 to a brachiopod richness of 63 (343 drop) occurred at this boundary.
+```
 
-
-
-Problem Set 4
+## Problem Set 4
+````R
 1) Repeat the above steps, but for the BrachiopodAbundance community matrix. What is the standardized richness you got for brachiopods. Show your code.
 > SampleBrachAbundances<-apply(BrachiopodAbundance,1,sum)
 > SampleBrachAbundances[which(SampleBrachAbundances==min(SampleBrachAbundances))]
@@ -217,12 +250,14 @@ Pleistocene
             43.21             34.64                     38.31                   46.11                     42.52
 Llandovery 
           42.41
-
+````
 
 
 2) How does the standardized brachiopod richness (previous question) compare to the unstandardized brachiopod richness from Problem Set 3? Show your code. Explain your reasoning. [Hint: Don't forget to put your biodiversities in temporal order]
 They are very strongly, positive correlated as proven by the coding below. This means they are very similar vectors, so as one increases (or decreases) the other increases (or decreases) in a similar manner through time since the vector data was arranged in proper temporal order.
 
+
+````R
 > StandardizedBrachRichness
 
 
@@ -240,22 +275,22 @@ check:
 Compare with BrachRichness Vector from Problem Set 3:
 > cor(StandardizedBrachRichVector,BrachRichnessVector)
 [1] 0.8834675
-
+````
 
 3) Make a scatter plot of standardized brachiopod richness versus standardized bivalve richness. Make a second scatter plot of unstandardized brachiopod richness versus unstandardized bivalve richness. Compare and contrast the two plots. What are the differences or similarities? Does standardizing or not standardizing matter? Show your code and explain your reasoning in detail. [Hint: If you forgot how to plot, revist the previous lab]
 
-
-Standardize Bivalve Richness:
+````R
+# Standardize Bivalve Richness:
 > SampleAbundances<-apply(BivalveAbundance,1,sum)
 > SampleAbundances[which(SampleAbundances==min(SampleAbundances))]
 Early Ordovician 
              124 
 > StandardizedBivalveRichness<-apply(BivalveAbundance,1,subsampleIndividuals,Quota=124)
->SampleAbundances<-apply(BivalveAbundance,1,sum)
+> SampleAbundances<-apply(BivalveAbundance,1,sum)
 > StandardizedBivalveRichness
 
 
-put in temporal order:
+# put in temporal order:
 > StandardizedBivRichVector<-c(42.00,36.79,42.25,37.37,45.72 ,42.69,34.53,51.29 ,35.48 ,33.03 ,47.10,43.47 ,58.10 ,62.99,53.64,28.00,54.52,63.93 ,58.12,61.38,65.35,74.06 ,78.35,62.53 ,72.79,76.47,85.93,84.97,83.84 )
 check:
 > sum(StandardizedBivRichVector)
@@ -264,16 +299,19 @@ check:
 [1] 1616.69
 
 
-StandardizedBivRichVector = bivalve richness = x-axis
-StandardizedBrachRichVector = brachiopod richness = y-axis
+# StandardizedBivRichVector = bivalve richness = x-axis
+# StandardizedBrachRichVector = brachiopod richness = y-axis
 > plot(x=StandardizedBivRichVector,y=StandardizedBrachRichVector)
 
-From Problem Set 3, plot:
+# From Problem Set 3, plot:
 > plot(x=BivRichnessVector,y=BrachRichnessVector)
-  
+````  
 
 Both the standardized and unstandardized plots show a general trend of bivalve richness increasing as brachiopod richness decreases. This trend was slightly more clear and consistent using the standardized data. Therefore, it seems to be useful to use standardized data over unstandardized data.
 
 
 4) Do you believe that there is any evidence in these analyses to support the idea that bivalves outcompeted brachiopods over time? Explain your reasoning.
+
 Yes. In problem set 3 I determined that brachiopod richness has a negative correlation with bivalve richness. SImilarly, I determined that brachiopod diversity has a negative correlation with bivalve diversity. Looking at the brachiopod richness and diversity data from (BrachRichnessVector and BrachDivVector), I can clearly see that brachiopod richness and diversity decrease over geologic time moving toward the present. Conversely, when looking at richness and diversity data for bivalves (BivRichnessVector and BivDivVector) I can see a general increasing trend in both richness and diversity over geologic time moving toward the present. This supports and assists in the interpretation of the negative correlations mentioned. This evidence along with the graph in the previous question, showing bivalve richness increase with decreasing brachiopod richness, are solid indicators that bivalves outcompeted brachiopods over time.
+
+> Hmm... have you ever heard the phrase, "Correlation does not prove causation" used in this context? Just because one is going up as another is going down doesn't mean that one caused the other. -1 Points
