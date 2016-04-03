@@ -5,10 +5,10 @@ West
 2) Look at the following line of code that you used before.
 plot(ModernMap,col=rgb(1,0,0,0.33),lty=0.01,add=TRUE)
 Describe what this code is doing. A good answer will describe what each of the plot( ) function arguments is doing - i.e., what is the meaning of col=, lty= and add=. As well, what does the rgb( ) function do? What does it mean? Use google or the R help( ) function.
--the plot function plots R objects – it plots the object, ModernMap we created
+-the plot function plots R objects - it plots the object, ModernMap we created
 -col specifies the plotting color
--the rgb function creates colors of different intensities, between zero and maximum, of red, blue, and green primaries. The fourth integer in the parentheses controls transparency. The rgb code refers to the standard sRGB colorspace.
--lty is the type of line as specified by an integer – having a line between  0 and 1 gives the line transparency
+-the rgb function creates colors of different intensities, between zero and maximum, of red, blue, and green primaries. The first three integers in the parentheses after rgb controls the intensity of the colors red, green, and blue respectively. So the code above should plot in the color red. The fourth integer in the parentheses controls transparency. The rgb code refers to the standard sRGB colorspace.
+-lty is the type of line as specified by an integer - having a line between  0 and 1 gives the line transparency
 -add=TRUE allows you to add to existing plots, instead of making a new one. 
 
 
@@ -43,27 +43,27 @@ DataPBDB<-downloadPBDB(Taxa=c("Anthozoa"),StartInterval="Paleocene",StopInterval
  [1] "occurrence_no"   – a unique number that identifies the occurrence
  [2] "record_type"     - the type of the object, (ex: occ for occurrence) 
  [3] "reid_no"         - a unique identifier for occurrences that have
-                       been reidentified – indicates whether or not it is the                       original identification of the occurrence.         
- [4] "flags"           - R indicates that the record representing an identif-                       ication has been replaced by a more recent identifica-                       tion       
- [5] "collection_no"   - the identifier for the collection the occurrence be-                       longs to 
+                       been reidentified – indicates whether or not it is the original identification of the occurrence.         
+ [4] "flags"           - R indicates that the record representing an identification has been replaced by a more recent identification       
+ [5] "collection_no"   - the identifier for the collection the occurrence belongs to 
  [6] "identified_name" – the taxonomic name the occurrence was identified as
  [7] "identified_rank" – the taxonomic rank of the taxonomic name given
  [8] "identified_no"   - a unique identifier for the taxonomic name 
  [9] "difference"      - gives the reason for which the identified name and 
-                       accepted name are not the same. If this is blank, then                       they are the same. 
-[10]"accepted_name"    - the accepted taxonomic name associated with the ide-                       ntified name 
+                       accepted name are not the same. If this is blank, then they are the same. 
+[10]"accepted_name"    - the accepted taxonomic name associated with the identified name 
 [11] "accepted_rank"   - the taxonomic rank of the accepted name 
 [12]"accepted_no"      - a unique identifier for the accepted taxonomic name
-[13] "early_interval"  - the geologic interval that begins the range associa-                       ted with the occurrence. Or geologic time range assoc-                       iated with occurrence
-[14] "late_interval"   - the geologic interval that ends the range associated                       with the occurrence, if it’s different than the early                        interval.
-[15] "max_ma"          - the early bound for the geologic time range for the                        occurrence (in millions of years ago)
-[16] "min_ma"          - the late bound for the geologic time range for the                         occurrence (in millions of years ago) 
+[13] "early_interval"  - the geologic interval that begins the range associated with the occurrence. Or geologic time range associated with occurrence
+[14] "late_interval"   - the geologic interval that ends the range associated with the occurrence, if it’s different than the early interval.
+[15] "max_ma"          - the early bound for the geologic time range for the occurrence (in millions of years ago)
+[16] "min_ma"          - the late bound for the geologic time range for the occurrence (in millions of years ago) 
 [17] "reference_no"    - the identifier for the reference for the data
 [18] "paleomodel"      - the primary model identified by the parameter pgm
 [19] "paleolng"        - the paleolongitude of the collection
 
 [20]"paleolat"         - the paleolatitude of the collection
-[21] "geoplate"        - the identifier number of the geologic plate the col-                       lection came from 
+[21] "geoplate"        - the identifier number of the geologic plate the collection came from 
 [22]"phylum"           - the name of the phylum the occurrence belongs to 
 [23] "class"           - the name of the class the occurrence belongs to 
 [24] "order"           - the name of the order the occurrence belongs to 
