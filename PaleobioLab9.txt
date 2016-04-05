@@ -4,6 +4,7 @@ Problem Set 1
 West 
 2) Look at the following line of code that you used before.
 plot(ModernMap,col=rgb(1,0,0,0.33),lty=0.01,add=TRUE)
+<<<<<<< Updated upstream
 Describe what this code is doing. A good answer will describe what each of theÂ plot( )Â functionÂ argumentsÂ is doing - i.e., what is the meaning of col=, lty= and add=. As well, what does theÂ rgb( )Â function do? What does it mean? Use google or the RÂ help( )Â function.
 -the plot function plots R objects - it plots the object, ModernMap we created
 -col specifies the plotting color
@@ -11,6 +12,14 @@ Describe what this code is doing. A good answer will describe what each of theÂ 
 -lty is the type of line as specified by an integer - having a line between  0 and 1 gives the line transparency
 -add=TRUE allows you to add to existing plots, instead of making a new one. 
 
+=======
+Describe what this code is doing. A good answer will describe what each of the plot( ) function arguments is doing - i.e., what is the meaning of col=, lty= and add=. As well, what does the rgb( ) function do? What does it mean? Use google or the R help( ) function. 
+-the plot function plots R objects - it plots the object, ModernMap we created
+-col specifies the plotting color
+-the rgb function creates colors of different intensities, between zero and maximum, of red, blue, and green primaries. The first three integers in the parentheses after rgb controls the intensity of the colors red, green, and blue respectively. So the code above should plot in the color red. The fourth integer in the parentheses controls transparency. The rgb code refers to the standard sRGB colorspace.
+-lty is the type of line as specified by an integer - having a line between  0 and 1 gives the line transparency
+-add=TRUE allows you to add to existing plots, instead of making a new one. 
+>>>>>>> Stashed changes
 
 3) Download a map of the middle Cretaceous (Albian Epochs ~110 mys ago). Name itÂ AlbianMap.
 > AlbianMap<-downloadPaleogeography(Age=110)
@@ -37,8 +46,11 @@ DataPBDB<-downloadPBDB(Taxa=c("Anthozoa"),StartInterval="Paleocene",StopInterval
 > dim(DataPBDB)
 [1] 2847   26
 
+<<<<<<< Updated upstream
 
 4) What are the names of columns of the PBDB data matrix you just downloaded. What does each column mean? If you do not know, consult with theÂ API documentation.
+=======
+>>>>>>> Stashed changes
 > colnames(DataPBDB)
  [1] "occurrence_no"   â€“ a unique number that identifies the occurrence
  [2] "record_type"     - the type of the object, (ex: occ for occurrence) 
