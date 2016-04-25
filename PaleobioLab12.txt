@@ -1,7 +1,7 @@
 Question 1
-Download four data sets from the paleobiology database. First, a dataset of Anisian-Rhaetian Synapsids, name it TriassicSynapsids. Second, a dataset of Anisian-Rhaetian Diapsids, name it TriassicDiapsids. Third, a dataset of post-Triassic Diapsids, name it JurassicDiapsids. Fourth, a dataset of post-Triassic Synapsids, name it JurassicSynapsids. Show your code.
+Download four data sets from the paleobiology database. First, a dataset of Anisian-Rhaetian Synapsids, name it TriassicSynapsids. Second, a dataset of Anisian-Rhaetian Diapsids, name itÂ TriassicDiapsids. Third, a dataset of post-Triassic Diapsids, name itÂ JurassicDiapsids. Fourth, a dataset of post-Triassic Synapsids, name itÂ JurassicSynapsids. Show your code.
 Hint:
-* Use the formal terms Diapsida and Synapsida when downloading the data.
+* Use the formal termsÂ DiapsidaÂ andÂ SynapsidaÂ when downloading the data.
 > TriassicSynapsids<-downloadPBDB("Synapsida","Anisian","Rhaetian")
 > TriassicDiapsids<-downloadPBDB("Diapsida","Anisian","Rhaetian")
 > JurassicDiapsids<-downloadPBDB("Diapsida","Jurassic","Neogene")
@@ -123,7 +123,7 @@ Coefficients:
 (Intercept)                    -2.3009122  0.1547326  -14.87   <2e-16 ***
 FinalMatrix[, "MeanLatitudes"]  0.0007725  0.0051555    0.15    0.881    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -134,6 +134,6 @@ AIC: 312.08
 Number of Fisher Scoring iterations: 5
 
 
-…….
+â€¦â€¦.
 
 
