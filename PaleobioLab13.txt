@@ -1,5 +1,5 @@
 +Problem Set 1
-1) What is the total biodiverisity (generic richness) of OrdovicianMatrix and SilurianMatrix? In the alpha, beta, and gamma ADDITIVE diveristy partitioning paradigm, does this number represent alpha, beta, or gamma biodiversity? Show your code.
+1) What is the total biodiverisity (generic richness) ofÂ OrdovicianMatrixÂ andÂ SilurianMatrix? In the alpha, beta, and gamma ADDITIVEÂ diveristy partitioning paradigm, does this number represent alpha, beta, or gamma biodiversity? Show your code.
 This number represents gamma diversity.
 > dim(OrdovicianMatrix)
 [1]  38 211
@@ -11,7 +11,7 @@ This number represents gamma diversity.
 
 The total diversity for the OrdovicianMatrix is 211.The total diversity for the Silurian Matrix is 423. This number represents gamma diversity
 
-2) What is the average biodiversity of all sample (stratigraphic units) in Ordovicianmatrix and SilurianMatrix? In the alpha, beta, and gamma ADDITIVE diveristy partitioning paradigm, does this number represent alpha, beta, or gamma biodiversity? Show your code.
+2) What is the average biodiversity of all sample (stratigraphic units) inÂ OrdovicianmatrixÂ andÂ SilurianMatrix? In the alpha, beta, and gammaÂ ADDITIVEÂ diveristy partitioning paradigm, does this number represent alpha, beta, or gamma biodiversity? Show your code.
 
 >MeanOrdoSampDiv<-apply(OrdovicianMatrix,1,sum)
 > mean(MeanOrdoSampDiv)
@@ -23,7 +23,7 @@ These numbers represent alpha diversity
 > AlphaOrdovician<-26.60526
 > AlphaSilurian<-42.79167
 
-3) What is the difference between the average biodiversity of all samples (stratigraphic units) in OrdovicianMatrix and the total biodiversity of OrdovicianMatrix. What about for the Silurian? In the alpha, beta, and gamma ADDITIVE diveristy partitioning paradigm, does this number represent alpha, beta, or gamma biodiversity? Show your code.
+3) What is the difference between the average biodiversity of all samples (stratigraphic units) inÂ OrdovicianMatrixÂ and the total biodiversity ofÂ OrdovicianMatrix. What about for the Silurian? In the alpha, beta, and gammaÂ ADDITIVEÂ diveristy partitioning paradigm, does this number represent alpha, beta, or gamma biodiversity? Show your code.
 > BetaOrdovician<-211-26.60526
 > BetaSilurian<-423-42.79167
 > BetaOrdovician
@@ -33,7 +33,7 @@ These numbers represent alpha diversity
 
 These numbers represent beta diversity.
 
-4) Using the same ADDITIVE diversity partitioning schema, does alpha diversity increase between the Ordovician and Silurian? Does beta diversity? Does gamma diversity? By how much?
+4) Using the sameÂ ADDITIVEÂ diversity partitioning schema, does alpha diversity increase between the Ordovician and Silurian? Does beta diversity? Does gamma diversity? By how much?
 > AlphaSilurian-AlphaOrdovician
 [1] 16.18641
 
@@ -46,15 +46,14 @@ These numbers represent beta diversity.
 Alpha diversity diversity increased by 16.2, beta diversity increased by 195.8, and gamma diversity increased by 212 across the Ordovician/Silurian boundary.
 
 5) Sampling is different between the Ordovician and Silurian, which makes a direct comparison of the numbers questionable. Sometimes we try to get around this by representing alpha and beta as percentages of gamma.
-*refresh, reworded
 
-What is the alpha diveristy of OrdovicianMatrix and SilurianMatrix as a percentage of their respective gamma diversities?
+What is the alpha diveristy ofÂ OrdovicianMatrixÂ andÂ SilurianMatrixÂ as a percentage of their respective gamma diversities?
 > AlphaOrdovician/GammaOrdovician
 [1] 0.1260913
 > AlphaSilurian/GammaSilurian
 [1] 0.1011623
 
-What is the beta diversity of OrdovicianMatrix and SilurianMatrix as a percentage of their respective gamma diversities?
+What is the beta diversity ofÂ OrdovicianMatrixÂ andÂ SilurianMatrixÂ as a percentage of their respective gamma diversities?
 > BetaOrdovician/GammaOrdovician
 [1] 0.8739087
 > BetaSilurian/GammaSilurian
@@ -211,8 +210,8 @@ Alpha diversity decreases after both the End-Permian and End-Cretaceous extincti
 
 Problem Set 3
 It is also possible to measure biodiversity using metrics other than generic richness, such as exponentiated Shannon's Entropy. Let's see what the biodiversity pattern looks like when analyzed in this way.
-* Hint: You may use the vegan package of previous labs to calcualte Shannon's H
-1) Using what we did above as a guide, download comparable datasets for the End-Ordovician, End-Permian, and End-Cretaceous extinctions and process them as we did above (Steps 2-5). BUT, this time, use the abundanceMatrix( ) function instead of presenceMatrix( ).
+* Hint: You may use theÂ veganÂ package of previous labs to calcualte Shannon's H
+1) Using what we did above as a guide, download comparable datasets for the End-Ordovician, End-Permian, and End-Cretaceous extinctions and process them as we did above (Steps 2-5).Â BUT, this time, use theÂ abundanceMatrix( )Â function instead ofÂ presenceMatrix( ).
 
 > library("vegan")
 Epochs<-downloadTime("international epochs")
@@ -240,7 +239,8 @@ Late Ordovician (Sandbian-Hirnantian)
 > LatePermian<-macrostratMatch(LatePermian)
 > LatePermianAbMatrix<-abundanceMatrix(LatePermian,SampleDefinition="unit_name",TaxonRank="genus")
 > LatePermianAbMatrix<-cullMatrix(LatePermianMatrix,2,10)
-* Early Triassic (Induan-Ladinian)
+
+* Early Triassic (Induan-Ladinian)
 
 > EarlyTriassic<-downloadPBDB(Taxa="Animalia",StartInterval="Induan",StopInterval="Ladinian")
 > EarlyTriassic<-cleanRank(EarlyTriassic,"genus")
@@ -404,5 +404,5 @@ When measured as a percentage, Alpha biodiversity decreases across the End-Ordov
 Problem 4
 Based on your results across problem sets 1, 2, and 3, do you believe that Beta diversity tends to increase, decrease, or neither after mass extinction events as a general rule?
 
-In general, it seems that Beta diversity usually increases after mass extinction events. However, this does not appear to be a strict rule because it does not hold true when applied to several of the calculations above. For example,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   the End-Cretaceous based on part 3 question 3, The Late-Permian and Late-Cretaceous extinctions based on part 3 question 2 do not abide by this rule. I would still say that it would qualify as a general rule since it seems that this is true for all the other calculations of changes in beta across extinction events in this exercise.
+In general, it seems that Beta diversity usually increases after mass extinction events. However, this does not appear to be a strict rule because it does not hold true when applied to several of the calculations above. For example, the End-Cretaceous based on part 3 question 3, The Late-Permian and Late-Cretaceous extinctions based on part 3 question 2 do not abide by this rule. I would still say that it would qualify as a general rule since it seems that this is true for all the other calculations of changes in beta across extinction events in this exercise.
 
