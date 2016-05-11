@@ -1,26 +1,39 @@
-Question 1
+> 20/20
+
+## Question 1
+
 Download four data sets from the paleobiology database. First, a dataset of Anisian-Rhaetian Synapsids, name it TriassicSynapsids. Second, a dataset of Anisian-Rhaetian Diapsids, name it TriassicDiapsids. Third, a dataset of post-Triassic Diapsids, name it JurassicDiapsids. Fourth, a dataset of post-Triassic Synapsids, name it JurassicSynapsids. Show your code.
 Hint:
 * Use the formal terms Diapsida and Synapsida when downloading the data.
+
+````R
 > TriassicSynapsids<-downloadPBDB("Synapsida","Anisian","Rhaetian")
 > TriassicDiapsids<-downloadPBDB("Diapsida","Anisian","Rhaetian")
 > JurassicDiapsids<-downloadPBDB("Diapsida","Jurassic","Neogene")
 > JurassicSynapsids<-downloadPBDB("Synapsida","Jurassic","Neogene")
-Question 2
+````
+
+## Question 2
 How many Diapsid genera were there in the Triassic dataset? How many Synapsid genera? Show your code.
 Hint:
 * Remember, there is a difference between the number of genera and the number of occurrences.
 * Don't forget to clean up the genus names!
+
+````R
 > TriassicDiapsids<-cleanRank(TriassicDiapsids,"genus")
 > TriassicSynapsids<-cleanRank(TriassicSynapsids,"genus")
 > length(unique(TriassicDiapsids[,"genus"]))
 [1] 389
 > length(unique(TriassicSynapsids[,"genus"]))
 [1] 116
-Question 3
+````
+
+## Question 3
 How many Triassic Diapsid genera survived the Triassic/Jurassic transition? How many were victims? How many Triassic Synapsid genera surivived the Triassic/Jurassic Transition? How many were victims? Show your code.
+
 36 Triassic Diapsid genera survived the Triassic/Jurassic transition, 353 Triassic Diapsid genera were victims. 9 Triassic Synapsid genera survived the Triassic/Jurassic transition, and 353 Triassic Synapsid genera were victims.
 
+````R
 > TriassicSynapsidGenera<-unique(TriassicSynapsids[,"genus"])
 > TriassicDiapsidGenera<-unique(TriassicDiapsids[,"genus"])
 
@@ -39,17 +52,22 @@ How many Triassic Diapsid genera survived the Triassic/Jurassic transition? How 
 [1] 353
 > length(TriassicDiapsidSurvivors)
 [1] 36
+````
 
-Question 4
+## Question 4
 Calculate the odds ratio and log-odds that Diapsid genera were more likely to survive the T/J transition than Synapsids
 
+````R
 > DiapsidOdds<-(length(TriassicDiapsidSurvivors)/length(TriassicDiapsidGenera))/(length(TriassicDiapsidVictims)/length(TriassicDiapsidGenera))
 > SynapsidOdds<-(length(TriassicSynapsidSurvivors)/length(TriassicSynapsidGenera))/(length(TriassicSynapsidVictims)/length(TriassicSynapsidGenera))
 > OddsRatio<-DiapsidOdds/SynapsidOdds
 > OddsRatio
 [1] 1.212465
-Question 5
+````
+
+## Question 5
 Using a 95% confidence interval, can you say that this odds/ratio is "statistically significant"? Show your code.
+````R
 > StandardError<-sqrt(1/length(TriassicDiapsidSurvivors)+1/length(TriassicDiapsidVictims)+1/length(TriassicSynapsidSurvivors)+1/length(TriassicSynapsidVictims))
 > StandardError
 [1] 0.3886741
@@ -59,32 +77,49 @@ Using a 95% confidence interval, can you say that this odds/ratio is "statistica
 [1] 0.9544563
 > LowerLimit
 [1] -0.5691461
+````
 
 No! The lower limit of the 95% confidence interval is negative. A negative odds ratio would suggest that Synapsids are more likely to survive across the Triassic/Jurassic boundary than Diapsids. So despite the fact that the odds ratio calculated was positive, suggesting Diapsids were more likely to survive across the Triassic/Jurassic boundary than Synapsids, this is not statistically significant. So we cannot rule out the possibility that Synapsids had an advantage over Diapsids across the Triassic/Jurassic transition.
-Problem Set 2
+
+## Problem Set 2
+
 Let's apply the technique that you just learned the Triassic and Jurassic Diapsids and Synapsids.
+
 Queston 1
+
 Download a dataset of Anisian-Rhaetian Diapsids and Synapsids, and a dataset of post-Triassic Diapsids and Synapsids. Show your code.
+
+````R
 > TriassicSynapsidsandDiapsids<-downloadPBDB(c("Synapsida","Diapsida"),"Anisian","Rhaetian")
 > JurassicSynapsidsandDiapsids<-downloadPBDB(c("Synapsida","Diapsida"),"Jurassic","Neogene")
 > TriassicSynapsidsandDiapsids<-cleanRank(TriassicSynapsidsandDiapsids,"genus")
 > JurassicSynapsidsandDiapsids<-cleanRank(JurassicSynapsidsandDiapsids,"genus")
+````
 
 Question 2
+
 Find the mean latitude of each genus's occurrences in your Triassic dataset. Show your code.
+
+````R
 > MeanLatitudes<-tapply(TriassicSynapsidsandDiapsids[,"paleolat"],TriassicSynapsidsandDiapsids[,"genus"],mean)
+````
 
 Question 3
+
 Find which Triassic genera were survivors and which were victims of the Triassic/Jurassic event. Show your code.
+````R
 > TriassicSurvivors<-subset(TriassicSynapsidsandDiapsids,TriassicSynapsidsandDiapsids[,"genus"]%in%unique(JurassicSynapsidsandDiapsids[,"genus"])==TRUE)
 > TriassicSurvivors<-unique(TriassicSurvivors[,"genus"])
 > head(TriassicSurvivors)
 > TriassicVictims<-subset(TriassicSynapsidsandDiapsids,TriassicSynapsidsandDiapsids[,"genus"]%in%unique(JurassicSynapsidsandDiapsids[,"genus"])!=TRUE)
 > TriassicVictims<-unique(TriassicVictims[,"genus"])
 > head(TriassicVictims)
+````
+
 Question 4
 Find which genera of your Triassic dataset were Diapsids and which were Synapsids. Show your code.
 
+````R
 VECTOR<-subset(TriassicSynapsidsandDiapsids,TriassicSynapsidsandDiapsids[,"genus"]%in%TriassicSynapsids[,"genus"]==TRUE)
 ANOTHERVECTOR<-unique(VECTOR[,"genus"])
 ANOTHERVECTOR
@@ -95,10 +130,14 @@ ANOTHERVECTOR2<-unique(VECTOR2[,"genus"])
 ANOTHERVECTOR2
 > length(ANOTHERVECTOR2)
 [1] 388
+````
+
 Question 5
 Perform a logistic regression where the outcome variable is Survivor/Victim and the input variable is the mean latitude of each genus. Show your code. Was the mean latitude of a Triassic genus a good predictor of its survival across the T/J extinction?
 
 No. The data below suggests that for every one degree increase in genus latitude, the log odds of having survived across the Triassic/Jurassic for the genera investigated increased by 0.0007725. However, the P-value is 0.881, far above 0.05, so this is not statistically significant. Therefore, the logistic regression performed suggests that mean latitude of a Triassic genus is not a good predictor of survival across the T/J extinction.
+
+````R
 > Arraysrgood<-array(0,dim=length(TriassicVictims),dimnames=list(TriassicVictims))
 > head(Arraysrgood)
 > FinalMatrix<-merge(MeanLatitudes,Arraysrgood,all=TRUE,by="row.names")
@@ -132,7 +171,7 @@ Residual deviance: 308.08 on 503 degrees of freedom
 AIC: 312.08
 
 Number of Fisher Scoring iterations: 5
-
+````
 
 …….
 
